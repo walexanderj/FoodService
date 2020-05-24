@@ -1,41 +1,41 @@
-﻿using FoodServiceApiRest.Models;
+﻿using FoodServiceApiRest.Data;
+using FoodServiceApiRest.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net;
 using System.Net.Http;
 using System.Web.Http;
-using FoodServiceApiRest.Data;
 
 namespace FoodServiceApiRest.Controllers
 {
-    public class UsuarioController : ApiController
+    public class AreaController : ApiController
     {
-        // GET: api/Usuario
-        public IEnumerable<string> Get()
+        // GET: api/Area
+        public IEnumerable<AreaModel> Get()
         {
-            return new string[] { "value1", "value2" };
+            AreaPersistence ap = new AreaPersistence();
+            var areas = ap.GetAll();
+            return areas.ToList();
         }
 
-        // GET: api/Usuario/5
+        // GET: api/Area/5
         public string Get(int id)
         {
             return "value";
         }
 
-        // POST: api/Usuario
+        // POST: api/Area
         public void Post([FromBody]string value)
         {
-            AreaPersistence up = new AreaPersistence();
-            UsuarioModel usuario = new UsuarioModel();
         }
 
-        // PUT: api/Usuario/5
+        // PUT: api/Area/5
         public void Put(int id, [FromBody]string value)
         {
         }
 
-        // DELETE: api/Usuario/5
+        // DELETE: api/Area/5
         public void Delete(int id)
         {
         }

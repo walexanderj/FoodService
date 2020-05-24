@@ -116,11 +116,13 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
+    <Compile Include="Controllers\AreaController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
-    <Compile Include="Data\UsuarioPersistence.cs" />
+    <Compile Include="Data\AreaPersistence.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
+    <Compile Include="Models\AreaModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
