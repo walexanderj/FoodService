@@ -62,6 +62,8 @@ namespace FoodServiceApiRest.Data
                     obj.CambiosEnPeriodo = (bool)reader["CambiosEnPeriodo"];
                     obj.Email = (string)reader["Email"];
                 }
+                EmpleadoPersistence ep = new EmpleadoPersistence();
+                obj.Empleados = ep.GetByArea(obj.Id);
                 return obj;
             }
             catch (Exception ex)

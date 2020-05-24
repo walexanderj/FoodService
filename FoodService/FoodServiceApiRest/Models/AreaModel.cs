@@ -12,5 +12,6 @@ namespace FoodServiceApiRest.Models
         public bool ProgramarTurnos { get; set; }
         public bool CambiosEnPeriodo { get; set; }
         public string Email { get; set; }
+        public List<EmpleadoModel> Empleados { get; set; }
     }
 }
