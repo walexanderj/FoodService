@@ -20,9 +20,8 @@ namespace FoodServiceApiRest.Models
         public bool AutoProgramar { get; set; }
         public DateTime FechaIngreso { get; set; }
         public DateTime FechaRetiro { get; set; }
-        public bool EsBodegaExterna { get; set; }
-        public int IdBodegaExterna { get; set; }
         public string Telefono { get; set; }
         public List<ProgramacionModel> Programacion { get; set; }
+        public List<NovedadModel> Novedades { get; set; }
     }
 }

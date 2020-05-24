@@ -42,8 +42,6 @@ namespace FoodServiceApiRest.Data
                     obj.TipoContrato = (string)reader["TipoContrato"];
                     obj.AutoProgramar = (bool)reader["AutoProgramar"];
                     obj.FechaIngreso = (DateTime)reader["FechaIngreso"];
-                    obj.EsBodegaExterna = (bool)reader["EsBodegaExterna"];
-                    obj.IdBodegaExterna = (int)reader["IdBodegaExterna"];
                     obj.Telefono = (string)reader["Telefono"];
                     list.Add(obj);
                 }
@@ -79,9 +77,7 @@ namespace FoodServiceApiRest.Data
                     obj.TipoContrato = (string)reader["TipoContrato"];
                     obj.AutoProgramar = (bool)reader["AutoProgramar"];
                     obj.FechaIngreso = (DateTime)reader["FechaIngreso"];
-                    obj.EsBodegaExterna = (bool)reader["EsBodegaExterna"];
-                    obj.IdBodegaExterna = (int)reader["IdBodegaExterna"];
-                    obj.Telefono = (string)reader["Telefono"];
+                    obj.Telefono = (string)reader["Telefono"].ToString();
                     list.Add(obj);
                 }
                 return list;
@@ -116,12 +112,13 @@ namespace FoodServiceApiRest.Data
                     obj.TipoContrato = (string)reader["TipoContrato"];
                     obj.AutoProgramar = (bool)reader["AutoProgramar"];
                     obj.FechaIngreso = (DateTime)reader["FechaIngreso"];
-                    obj.EsBodegaExterna = (bool)reader["EsBodegaExterna"];
-                    obj.IdBodegaExterna = (int)reader["IdBodegaExterna"];
-                    obj.Telefono = (string)reader["Telefono"];
+                    obj.Telefono = (string)reader["Telefono"].ToString();
                 }
                 ProgramacionPersistence pp = new ProgramacionPersistence();
                 obj.Programacion = pp.GetByEmpleado(obj.Id);
+
+                NovedadPersistence np = new NovedadPersistence();
+                obj.Novedades = np.GetByEmpleado(obj.Id);
                 return obj;
             }
             catch (Exception ex)

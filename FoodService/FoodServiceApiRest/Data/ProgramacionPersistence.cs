@@ -22,7 +22,7 @@ namespace FoodServiceApiRest.Data
             List<ProgramacionModel> list = new List<ProgramacionModel>();
             try
             {
-                string sqlString =  "select consec, fecha, idEmpleado,Programacion.idPlato,plato.Descripcion Plato,cantidad,Programacion.idTurno,Turno.Descripcion Turno,idPeriodo " +
+                string sqlString = "select consec, fecha, idEmpleado,Programacion.idPlato,plato.Descripcion Plato,cantidad,Programacion.idTurno,Turno.Descripcion Turno,idPeriodo " +
                                     "from programacion inner join plato on plato.idPlato = programacion.IdPlato " +
                                     "inner join TurnoDetalle on TurnoDetalle.IdTurnoDetalle = Programacion.IdTurno " +
                                     "inner join Turno on Turno.IdTurno = TurnoDetalle.IdTurno " +
@@ -32,13 +32,13 @@ namespace FoodServiceApiRest.Data
                 while (reader.Read())
                 {
                     var obj = new ProgramacionModel();
-                    obj.Id = (long)reader["consec"];
+                    obj.Id = (int)reader["consec"];
                     obj.Fecha = (DateTime)reader["fecha"];
-                    obj.IdEmpleado = (long)reader["idEmpleado"];
+                    obj.IdEmpleado = (int)reader["idEmpleado"];
                     obj.IdPlato = (int)reader["idPlato"];
                     obj.Plato = (string)reader["Plato"];
                     obj.Cantidad = (int)reader["cantidad"];
-                    obj.IdTurno = (long)reader["idTurno"];
+                    obj.IdTurno = (int)reader["idTurno"];
                     obj.Turno = (string)reader["Turno"];
                     obj.IdPeriodo = (int)reader["idPeriodo"];
                     list.Add(obj);
@@ -51,6 +51,64 @@ namespace FoodServiceApiRest.Data
                 Console.WriteLine(ex.Message);
             }
             return null; // return the list
+        }
+
+        internal void CancelarProgramacion(long idEmpleado, DateTime fecha)
+        {
+            try
+            {
+                string sqlString = "Update Programacion set cantidad = 0 "  +
+                                   "Where IdEmpleado = " + idEmpleado +
+                                   "and fecha = '" + fecha.ToString("yyyyMMdd") + "'";
+
+                SqlCommand cmd = new SqlCommand(sqlString, conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+            }
+
+        }
+
+        internal void Programar(long idEmpleado, DateTime fecha)
+        {
+            try
+            {
+                string sqlString = "Update Programacion set cantidad = 1 " +
+                                   "Where IdEmpleado = " + idEmpleado +
+                                   "and fecha = '" + fecha.ToString("yyyyMMdd") + "'";
+
+                SqlCommand cmd = new SqlCommand(sqlString, conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+            }
+        }
+
+        internal void CambiarTurno(long idEmpleado, DateTime fecha, long idTurnoDetalle, long idPlato)
+        {
+            try
+            {
+                string sqlString = "Insert into CambioTurnos(Fecha, IdEmpleado, IdTurno, IdPlato) " +
+                                   "select '" + fecha.ToString("yyyyMMdd") + "'" +
+                                   "," + idEmpleado + 
+                                   "," + idTurnoDetalle +
+                                   "," + idPlato +
+                                   "Update Programacion set cantidad = 1 " +
+                                   "idTurno = " + idTurnoDetalle +
+                                   "idPlato = " + idPlato +
+                                   "Where IdEmpleado = " + idEmpleado +
+                                   "and fecha = '" + fecha.ToString("yyyyMMdd") + "'";
+                SqlCommand cmd = new SqlCommand(sqlString, conn);
+                cmd.ExecuteNonQuery();
+            }
+            catch (Exception)
+            {
+
+            }
         }
     }
 }

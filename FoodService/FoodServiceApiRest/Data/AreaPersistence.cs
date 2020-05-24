@@ -34,7 +34,7 @@ namespace FoodServiceApiRest.Data
                     obj.Descripcion =(string) reader["Descripcion"];
                     obj.ProgramarTurnos = (bool)reader["ProgramarTurnos"];
                     obj.CambiosEnPeriodo = (bool)reader["CambiosEnPeriodo"];
-                    obj.Email = (string)reader["Email"];
+                    obj.Email = (string)reader["Email"].ToString();
                     list.Add(obj);
                 }
                 return list;
