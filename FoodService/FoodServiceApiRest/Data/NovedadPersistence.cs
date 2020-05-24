@@ -53,7 +53,7 @@ namespace FoodServiceApiRest.Data
         {
             try
             {
-                string sqlString = "insert into Novedad(IdEmpleado,Fecha,Detalle,NoAlimentacion,Notas,FechaIng,UsuarioIng,Anulado,GeneraNC))" +
+                string sqlString = "insert into Novedad(IdEmpleado,Fecha,Detalle,NoAlimentacion,Notas,FechaIng,UsuarioIng,Anulado,GeneraNC) " +
                                     "Values(" + obj.IdEmpleado + 
                                     ",'" + obj.Fecha.ToString("yyyyMMdd") + "'" +
                                     ",'" + obj.Detalle + "'" +
@@ -81,7 +81,7 @@ namespace FoodServiceApiRest.Data
                 }
                 else
                 {
-                    pp.CambiarTurno(obj.IdEmpleado, obj.Fecha, obj.idTurnoDetalle);
+                    pp.CambiarTurno(obj.IdEmpleado, obj.Fecha, obj.idTurnoDetalle,obj.idPlato);
                 }
                 return true;
             }
