@@ -42,6 +42,7 @@ namespace FoodServiceApiRest.Data
                     obj.Turno = (string)reader["Turno"];
                     obj.IdPeriodo = (int)reader["idPeriodo"];
                     list.Add(obj);
+
                 }
                 return list;
             }
