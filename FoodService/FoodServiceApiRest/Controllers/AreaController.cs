@@ -11,33 +11,56 @@ namespace FoodServiceApiRest.Controllers
 {
     public class AreaController : ApiController
     {
+        AreaPersistence ap = new AreaPersistence();
         // GET: api/Area
         public IEnumerable<AreaModel> Get()
         {
-            AreaPersistence ap = new AreaPersistence();
             var areas = ap.GetAll();
             return areas.ToList();
         }
 
         // GET: api/Area/5
-        public string Get(int id)
+        public AreaModel Get(int id)
         {
-            return "value";
+            var area = ap.GetArea(id);
+            return area;
         }
 
         // POST: api/Area
-        public void Post([FromBody]string value)
+        public HttpResponseMessage Post([FromBody]AreaModel value)
         {
+            if (ap.AddArea(value))
+            {
+                var message = Request.CreateResponse(HttpStatusCode.OK);
+                //message.Headers.Location = new Uri(Request.RequestUri + value.Id.ToString());
+                return message;
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Registro no ingresado");
         }
 
         // PUT: api/Area/5
-        public void Put(int id, [FromBody]string value)
+        public HttpResponseMessage Put(int id, [FromBody]AreaModel value)
         {
+
+            if (ap.UpdateArea(value))
+            {
+                var message = Request.CreateResponse(HttpStatusCode.OK);
+                //message.Headers.Location = new Uri(Request.RequestUri + value.Id.ToString());
+                return message;
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Registro no actualizado");
         }
 
         // DELETE: api/Area/5
-        public void Delete(int id)
+        public HttpResponseMessage Delete(int id)
         {
+            if (ap.Delete(id))
+            {
+                var message = Request.CreateResponse(HttpStatusCode.OK);
+                //message.Headers.Location = new Uri(Request.RequestUri + value.Id.ToString());
+                return message;
+            }
+            return Request.CreateErrorResponse(HttpStatusCode.BadRequest, "Registro no eliminado");
         }
     }
 }

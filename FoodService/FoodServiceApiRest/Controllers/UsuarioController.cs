@@ -11,6 +11,7 @@ namespace FoodServiceApiRest.Controllers
 {
     public class UsuarioController : ApiController
     {
+        AreaPersistence up = new AreaPersistence();
         // GET: api/Usuario
         public IEnumerable<string> Get()
         {
@@ -24,9 +25,8 @@ namespace FoodServiceApiRest.Controllers
         }
 
         // POST: api/Usuario
-        public void Post([FromBody]string value)
+        public void Post([FromBody]UsuarioModel value)
         {
-            AreaPersistence up = new AreaPersistence();
             UsuarioModel usuario = new UsuarioModel();
         }
 
