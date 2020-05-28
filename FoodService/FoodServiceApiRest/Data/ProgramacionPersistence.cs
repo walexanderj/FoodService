@@ -110,5 +110,36 @@ namespace FoodServiceApiRest.Data
 
             }
         }
+
+        public List<ProgramaDiaModel> ProgramaDia(DateTime fechaInicio, DateTime fechaFinal)
+        {
+            List<ProgramaDiaModel> list = new List<ProgramaDiaModel>();
+            try
+            {
+                string sqlString = "Execute SP_ImprimeProgramacionXPlato '" + fechaInicio.ToString("yyyyMMdd") + "'"  + ",'" + fechaFinal.ToString("yyyyMMdd") + "'";
+                SqlCommand cmd = new SqlCommand(sqlString, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                int i = 1;
+                while (reader.Read())
+                {
+                    var obj = new ProgramaDiaModel();
+                    obj.Id = i;
+                    obj.Fecha = (DateTime)reader["fecha"];
+                    obj.Dia = (string)reader["Dia"];
+                    obj.Plato = (string)reader["Plato"];
+                    obj.Cantidad = (int)reader["cantidad"];
+                    obj.HoraPrograma = (string)reader["HoraPrograma"];
+                    list.Add(obj);
+                    i += 1;
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null; // return the list
+        }
+
     }
 }

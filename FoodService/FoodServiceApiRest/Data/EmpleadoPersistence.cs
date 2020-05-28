@@ -59,7 +59,7 @@ namespace FoodServiceApiRest.Data
             List<EmpleadoModel> list = new List<EmpleadoModel>();
             try
             {
-                string sqlString = "Select * from Empleado where idArea = " + idArea;
+                string sqlString = "Select * from Empleado where idArea = " + idArea + " and activo = 1";
                 SqlCommand cmd = new SqlCommand(sqlString, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())

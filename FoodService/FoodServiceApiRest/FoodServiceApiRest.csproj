@@ -117,22 +117,31 @@
   <ItemGroup>
     <Compile Include="App_Start\WebApiConfig.cs" />
     <Compile Include="Controllers\AreaController.cs" />
+    <Compile Include="Controllers\ConceptosController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\NovedadController.cs" />
+    <Compile Include="Controllers\ProgramacionController.cs" />
+    <Compile Include="Controllers\TurnoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
     <Compile Include="Data\AreaPersistence.cs" />
+    <Compile Include="Data\ConceptoPersistence.cs" />
     <Compile Include="Data\EmpleadoPersistence.cs" />
     <Compile Include="Data\NovedadPersistence.cs" />
+    <Compile Include="Data\PlatoPersistence.cs" />
     <Compile Include="Data\ProgramacionPersistence.cs" />
+    <Compile Include="Data\TurnoPersistence.cs" />
     <Compile Include="Data\UsuarioPersistence.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="Models\AreaModel.cs" />
+    <Compile Include="Models\ConceptoModel.cs" />
     <Compile Include="Models\EmpleadoModel.cs" />
     <Compile Include="Models\LoginModel.cs" />
     <Compile Include="Models\NovedadModel.cs" />
     <Compile Include="Models\ProgramacionModel.cs" />
+    <Compile Include="Models\ProgramaDiaModel.cs" />
+    <Compile Include="Models\TurnoModel.cs" />
     <Compile Include="Models\UsuarioModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
