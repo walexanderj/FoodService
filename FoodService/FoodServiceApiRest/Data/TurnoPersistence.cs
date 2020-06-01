@@ -32,7 +32,7 @@ namespace FoodServiceApiRest.Data
                     var obj = new TurnoModel();
                     obj.Id = (int)reader["IdTurnoDetalle"];
                     obj.IdPlato = (int)reader["IdPlato"];
-                    obj.Descripcion = (string)reader["Descripcion"];
+                    obj.Descripcion = (string)reader["Descripcion"] + '(' + reader["Plato"] + ")";
                     obj.Plato = (string)reader["Plato"];
                     list.Add(obj);
                 }

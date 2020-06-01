@@ -24,7 +24,7 @@ namespace FoodServiceApiRest.Data
             List<EmpleadoModel> list = new List<EmpleadoModel>();
             try
             {
-                string sqlString = "Select * from Empleado";
+                string sqlString = "Select Empleado.*,Area.Descripcion Area from Empleado inner join Area on area.IdArea = Empleado.idArea where activo = 1 order by Nombre";
                 SqlCommand cmd = new SqlCommand(sqlString, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -38,11 +38,12 @@ namespace FoodServiceApiRest.Data
                     obj.EsSuperUsuario = (bool)reader["EsSuperUsuario"];
                     obj.Activo = (bool)reader["Activo"];
                     obj.EsAdministrativo = (bool)reader["EsAdministrativo"];
-                    obj.UserName = (string)reader["UserName"];
-                    obj.TipoContrato = (string)reader["TipoContrato"];
+                    obj.UserName = (string)reader["UserName"].ToString();
+                    obj.TipoContrato = (string)reader["TipoContrato"].ToString();
                     obj.AutoProgramar = (bool)reader["AutoProgramar"];
                     obj.FechaIngreso = (DateTime)reader["FechaIngreso"];
-                    obj.Telefono = (string)reader["Telefono"];
+                    obj.Telefono = (string)reader["Telefono"].ToString();
+                    obj.Area = (string)reader["Area"].ToString();
                     list.Add(obj);
                 }
                 return list;
@@ -59,7 +60,7 @@ namespace FoodServiceApiRest.Data
             List<EmpleadoModel> list = new List<EmpleadoModel>();
             try
             {
-                string sqlString = "Select * from Empleado where idArea = " + idArea + " and activo = 1";
+                string sqlString = "Select * from Empleado where idArea = " + idArea + " and activo = 1 order by Nombre";
                 SqlCommand cmd = new SqlCommand(sqlString, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
@@ -95,7 +96,7 @@ namespace FoodServiceApiRest.Data
             try
             {
                 var obj = new EmpleadoModel();
-                string sqlString = "Select * from Empleado where idEmpleado = " + id;
+                string sqlString = "Select * from Empleado where idEmpleado = " + id ;
                 SqlCommand cmd = new SqlCommand(sqlString, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())

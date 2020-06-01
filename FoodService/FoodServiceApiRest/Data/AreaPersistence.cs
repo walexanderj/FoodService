@@ -24,7 +24,7 @@ namespace FoodServiceApiRest.Data
             List<AreaModel> list = new List<AreaModel>();
             try
             {
-                string sqlString = "Select * from Area";
+                string sqlString = "Select * from Area order by descripcion";
                 SqlCommand cmd = new SqlCommand(sqlString, conn);
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())

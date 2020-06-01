@@ -97,11 +97,11 @@ namespace FoodServiceApiRest.Data
                                    "," + idEmpleado + 
                                    "," + idTurnoDetalle +
                                    "," + idPlato +
-                                   "Update Programacion set cantidad = 1 " +
-                                   "idTurno = " + idTurnoDetalle +
-                                   "idPlato = " + idPlato +
-                                   "Where IdEmpleado = " + idEmpleado +
-                                   "and fecha = '" + fecha.ToString("yyyyMMdd") + "'";
+                                   " Update Programacion set cantidad = 1 " +
+                                   ",idTurno = " + idTurnoDetalle +
+                                   ",idPlato = " + idPlato +
+                                   " Where IdEmpleado = " + idEmpleado +
+                                   " and fecha = '" + fecha.ToString("yyyyMMdd") + "'";
                 SqlCommand cmd = new SqlCommand(sqlString, conn);
                 cmd.ExecuteNonQuery();
             }
