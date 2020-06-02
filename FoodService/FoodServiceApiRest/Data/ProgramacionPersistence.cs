@@ -17,6 +17,42 @@ namespace FoodServiceApiRest.Data
             conn.ConnectionString = strConnString;
             conn.Open();
         }
+        public List<ProgramacionModel> Get()
+        {
+            List<ProgramacionModel> list = new List<ProgramacionModel>();
+            try
+            {
+                string sqlString = "select consec, fecha, idEmpleado,Programacion.idPlato,plato.Descripcion Plato,cantidad,Programacion.idTurno,Turno.Descripcion Turno,idPeriodo " +
+                                    "from programacion inner join plato on plato.idPlato = programacion.IdPlato " +
+                                    "inner join TurnoDetalle on TurnoDetalle.IdTurnoDetalle = Programacion.IdTurno " +
+                                    "inner join Turno on Turno.IdTurno = TurnoDetalle.IdTurno " +
+                                    "where Fecha >= convert(date,getdate())";
+                SqlCommand cmd = new SqlCommand(sqlString, conn);
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    var obj = new ProgramacionModel();
+                    obj.Id = (int)reader["consec"];
+                    obj.Fecha = (DateTime)reader["fecha"];
+                    obj.IdEmpleado = (int)reader["idEmpleado"];
+                    obj.IdPlato = (int)reader["idPlato"];
+                    obj.Plato = (string)reader["Plato"];
+                    obj.Cantidad = (int)reader["cantidad"];
+                    obj.IdTurno = (int)reader["idTurno"];
+                    obj.Turno = (string)reader["Turno"];
+                    obj.IdPeriodo = (int)reader["idPeriodo"];
+                    list.Add(obj);
+
+                }
+                return list;
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+            return null; // return the list
+        }
+
         public List<ProgramacionModel> GetByEmpleado(long idEmpleado)
         {
             List<ProgramacionModel> list = new List<ProgramacionModel>();

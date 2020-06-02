@@ -120,6 +120,7 @@
     <Compile Include="Controllers\ConceptosController.cs" />
     <Compile Include="Controllers\EmpleadoController.cs" />
     <Compile Include="Controllers\NovedadController.cs" />
+    <Compile Include="Controllers\ProgramacionController.cs" />
     <Compile Include="Controllers\ProgramaDiaController.cs" />
     <Compile Include="Controllers\TurnoController.cs" />
     <Compile Include="Controllers\UsuarioController.cs" />
