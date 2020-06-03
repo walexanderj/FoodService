@@ -16,5 +16,6 @@ namespace FoodServiceApiRest.Models
         public long IdTurno { get; set; }
         public string Turno { get; set; }
         public long IdPeriodo { get; set; }
+        public long IdArea { get; set; }
     }
 }

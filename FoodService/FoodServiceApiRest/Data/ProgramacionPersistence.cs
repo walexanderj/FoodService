@@ -22,8 +22,10 @@ namespace FoodServiceApiRest.Data
             List<ProgramacionModel> list = new List<ProgramacionModel>();
             try
             {
-                string sqlString = "select consec, fecha, idEmpleado,Programacion.idPlato,plato.Descripcion Plato,cantidad,Programacion.idTurno,Turno.Descripcion Turno,idPeriodo " +
-                                    "from programacion inner join plato on plato.idPlato = programacion.IdPlato " +
+                string sqlString = "select consec, fecha, Programacion.idEmpleado,Programacion.idPlato,plato.Descripcion Plato,cantidad,Programacion.idTurno,Turno.Descripcion Turno,idPeriodo,Empleado.IdArea " +
+                                    "from programacion " +
+                                    "inner join Empleado on empleado.idEmpleado = programacion.IdEmpleado " +
+                                    "inner join plato on plato.idPlato = programacion.IdPlato " +
                                     "inner join TurnoDetalle on TurnoDetalle.IdTurnoDetalle = Programacion.IdTurno " +
                                     "inner join Turno on Turno.IdTurno = TurnoDetalle.IdTurno " +
                                     "where Fecha >= convert(date,getdate())";
